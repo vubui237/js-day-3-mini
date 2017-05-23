@@ -118,8 +118,7 @@ var makeDogSound;
 
 /*
 
-8. More Practice
-
+8. More Call and Apply Practice
 Below is an object with a findProp method. 
 
 */
@@ -166,22 +165,30 @@ var objWithFilter = {
 
 
 /* 
-More Practice? 
+9. Prototypes 
 
-Use the Array.prototype or String.prototype or Object.prototype methods to practice call and apply. 
+Remember that the prototype methods availabe on the Array, String, etc. objects use the this context to perform operations based on the context. Here's an example of a useless prototype method. 
+
 */
+Array.prototype.findLength = function() {
+   return this.length;
+}
 
-// Code here 
+// Now I can call findLength on any array I create, as in the following: 
+var arr = [1, 2, 3]
+arr.findLength()
 
-
-
+// But I can also call the findLength method on the Array.prototype object if I pass a context to it. 
+Array.prototype.findLength.call([1, 2, 3]);
 
 /*
+Let's Use the Array.prototype or String.prototype or Object.prototype methods to practice call and apply. 
+
 Call the String.prototype.toUpperCase method and pass it a new string as a context.
 */
 
 // Code here
-
+Array.prototype.filter.call([1, 2, 3], function() {return true})
 
 
 /*
@@ -197,3 +204,37 @@ Apply the String.prototype.replace method and pass it a new string as context an
 */
 
 // Code here
+
+
+/*
+10. Constructor Functions
+
+We'll cover these again tomorrow, but because the new keyword is in this lesson, let's pratice writing a constructor function again. 
+
+Create a constructor function for Person. Take in the name, age, and weight of a person, and assign these values to properties on the object. 
+
+*/
+
+// Code here
+/* 
+11. Prototype Creation
+
+Now give your Person object a prototype method called addWeight. Take in the addedWeight and add it to the weight of the person.
+
+*/
+
+// Code here
+
+
+/*
+12. Create Persons
+
+Create two persons, brian and briansClone, based on your Person object. Call the changeWeight method for each. Console.log the weight of each person to see if the weight has changed.
+
+*/ 
+
+// Code here
+var brian;
+var briansClone;
+
+

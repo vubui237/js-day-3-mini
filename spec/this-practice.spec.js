@@ -70,5 +70,38 @@ describe("The Keyword This", function() {
          expect(customer2.purchaseTotal).toBe(406)
       })
    })
+   describe("explicit binding with makeSound", function() {
+      it("should bind makeDogSound to animal's makeSound method", function() {
+         expect(makeDogSound()).toEqual("bark")
+      })
+   })
+   
+   describe("constructor function", function() {
+      it("should contain a Person function", function() {
+         expect(Person).toBeDefined()
+         expect(Person).toEqual(jasmine.any(Function))
+      })
+      it("should create a name, age, and weight property for a new person", function() {
+         var person = new Person(1, 2, 3)
+         expect(person.hasOwnProperty("name")).toBeTruthy()
+         expect(person.hasOwnProperty("age")).toBeTruthy()
+         expect(person.hasOwnProperty("weight")).toBeTruthy()
+      })
+      it("should assign correct values to those properties", function() {
+         var person = new Person(1, 2, 3)
+         expect(person.name).toBe(1)
+         expect(person.age).toBe(2)
+         expect(person.weight).toBe(3)
+      })
+      it("should assign a addWeight prototype method to Person", function() {
+         var person = new Person(1, 2, 3)
+         person.addWeight(3)
+         expect(person.weight).toBe(6)
+      })
+      it("should create brian and briansClone Person objects", function() {
+         expect(brian.hasOwnProperty("weight")).toBeTruthy()
+         expect(briansClone.hasOwnProperty("weight")).toBeTruthy()
+      })
+   })
 
 })
