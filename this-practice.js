@@ -10,7 +10,14 @@ Create an object called car using the object literal notation ({}). Give it a ma
 */
 
 // Code here
-var car;
+var car = {
+    model: 'camry',
+    make: 'toyota',
+    year: 2011,
+    getAge: function(curyear) { 
+        return curyear - this.year; 
+    }
+};
 
 
 /* 
@@ -20,7 +27,8 @@ Call the getAge method using the car object. Don't forget to pass the year argum
 */
 
 // Code here
-var carAge;
+var carAge = car.getAge(2017);
+console.log(carAge);
 
 
 
@@ -34,7 +42,11 @@ Create another object called anotherCar with the make, model, and year propertie
 */
 
 // Code here
-var anotherCar;
+var anotherCar = {
+    make: "Nissan",
+    model: "GTR",
+    year: 2012
+};
 
 
 
@@ -45,7 +57,8 @@ Now bind the getAge method of the first car object to the context of anotherCar.
 */
 
 // Code here
-var getAgeForAnotherCar;
+var getAgeForAnotherCar = car.getAge.bind(anotherCar);
+console.log(getAgeForAnotherCar(2017));
 
 
 
@@ -57,8 +70,10 @@ Now assign a year property to the window object. Give that property the value 20
 */
 
 // Code here
-var windowAge;
-
+window.year = 2000;
+//Can also do this.year = 2000;
+var windowAge = car.getAge.call(window, 2017);
+console.log(windowAge);
 /* 
 
 /* 
@@ -76,6 +91,7 @@ var customer1 = {
 
    addToTotal: function(num1, num2, num3) {
       this.purchaseTotal += num1 + num2 + num3;
+      return this.purchaseTotal;
    }
 };
 
@@ -85,7 +101,8 @@ var customer2 = {
 }
 
 // use apply here
-
+var CustC1T = customer1.addToTotal.apply(customer2,[1,2,3]);
+console.log(CustC1T);
 
 
 /*
@@ -111,7 +128,7 @@ var dog = {
 }
 
 // Code here
-var makeDogSound;
+var makeDogSound = animal.makeSound.bind(dog);;
 
 // Use call or apply to invoke the makeSound method with different objects.
 
@@ -140,6 +157,14 @@ Now you can use my method with any object. Create an object and use my findProp 
 */
 
 // Code here
+var kitkats = {
+    name: "kit",
+    age: 20000,
+    type: "deja"
+}
+
+console.log(objWithFind.findProp.call(kitkats,20000));
+
 
 
 /*
@@ -173,10 +198,11 @@ Remember that the prototype methods availabe on the Array, String, etc. objects 
 Array.prototype.findLength = function() {
    return this.length;
 }
-
+//Constructors Number, Boolean,Object,Array,String,Date,RegExp,function
+//Convert string to numbers I.E. NumInt('34')
 // Now I can call findLength on any array I create, as in the following: 
 var arr = [1, 2, 3]
-arr.findLength()
+arr.findLength(arr);
 
 // But I can also call the findLength method on the Array.prototype object if I pass a context to it. 
 Array.prototype.findLength.call([1, 2, 3]);
@@ -186,7 +212,7 @@ Let's Use the Array.prototype or String.prototype or Object.prototype methods to
 
 Call the String.prototype.toUpperCase method and pass it a new string as a context.
 */
-
+String.prototype.toUpperCase("SOUP KITKATS")
 // Code here
 Array.prototype.filter.call([1, 2, 3], function() {return true})
 
@@ -214,17 +240,24 @@ We'll cover these again tomorrow, but because the new keyword is in this lesson,
 Create a constructor function for Person. Take in the name, age, and weight of a person, and assign these values to properties on the object. 
 
 */
+function Person(name, age, weight) {
+    this.name = name;
+    this.age = age;
+    this.weight = weight;
+}
 
 // Code here
+var kat = new Person("Kat",25,140);
 /* 
 11. Prototype Creation
+
 
 Now give your Person object a prototype method called addWeight. Take in the addedWeight and add it to the weight of the person.
 
 */
 
 // Code here
-
+Person.prototype.addWeight = function(addedWeight) {return addedWeight + this.weight;}
 
 /*
 12. Create Persons
@@ -234,7 +267,9 @@ Create two persons, brian and briansClone, based on your Person object. Call the
 */ 
 
 // Code here
-var brian;
-var briansClone;
+var brian = new Person("brian",3,3);
+var briansClone = new Person("briansClone",240,2000);
+console.log(brian.addWeight(3));
+console.log(briansClone.addWeight(200));
 
 
